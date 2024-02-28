@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const markdown = require('./markdown');
 
 const args = process.argv.slice(2);
 const inputFilePath = args[0];
@@ -15,11 +16,12 @@ function tryCatchFunction(handle) {
 }
 
 function main() {
-  const dataFromInputFile = readFile();
-  console.log(dataFromInputFile);
+  const dataFromInputFile = readInputFile();
+  const result = markdown(dataFromInputFile);
+  console.log(result);
 }
 
-function readFile() {
+function readInputFile() {
   return fs.readFileSync(getPathFromDir(inputFilePath), {encoding: 'utf8'});
 }
 
