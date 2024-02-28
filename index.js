@@ -1,11 +1,6 @@
-const readline = require('readline');
+const fs = require('fs');
+const path = require('path');
 
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout
-});
-
-rl.question('Input path to file: ', (data) => {
-  console.log(`You inputed: ${data}`);
-  rl.close();
-});
+const args = process.argv.slice(2);
+const inputFilePath = args[0];
+const outputFilePath = args.includes('--out') ? args[args.indexOf('--out') + 1] : null;
