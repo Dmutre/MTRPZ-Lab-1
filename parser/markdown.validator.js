@@ -1,15 +1,18 @@
+const ERROR_MESSAGE = require('../utils/consts/error.message');
+
 class MarkDownValidator {
   #markups;
+
   constructor(markups) {
     this.#markups = markups;
   }
 
   checkNesting(text, cases) {
-    const parts = this.getMarkupParts(text, cases);
+    const parts = this.#getParts(text, cases);
     for (const part of parts) {
       cases.map(({pattern}) => {
         const matches = part.match(pattern);
-        if (matches) throw new Error('invalid markdown (nested markup)');
+        if (matches) throw new Error(ERROR_MESSAGE.NESTED);
       });
     }
   }
@@ -25,7 +28,12 @@ class MarkDownValidator {
     return parts;
   }
 
-  
+  checkUnpairedMarkup(text) {
+    for (const part of this.#markups) {
+      const matches = text.match(part);
+      if (matches) throw new Error(ERROR_MESSAGE.UNPAIRED);
+    }
+  }
 }
 
 module.exports = MarkDownValidator;

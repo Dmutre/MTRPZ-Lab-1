@@ -32,7 +32,7 @@ function main() {
   const dataFromInputFile = readInputFile();
   const markDown = new MarkDown();
   const result = markDown.parse(dataFromInputFile);
-  if(outputFilePath) outPutResult(result)
+  console.log(result);
 }
 
 tryCatchFunction(main);

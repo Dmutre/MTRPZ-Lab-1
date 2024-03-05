@@ -19,7 +19,10 @@ class MarkDown {
 
   parse (data) {
     const formattedText = this.#parser.replacePreformattedText(data);
-    this.#validator.checkNesting() 
+    this.#validator.checkNesting(formattedText, this.#cases);
+    const convertedMarkup = this.#parser.convert(formattedText, cases);
+    this.#validator.checkUnpairedMarkup(convertedMarkup);
+    return this.#parser.setPreformattedText(convertedMarkup);
   }
 
 }
