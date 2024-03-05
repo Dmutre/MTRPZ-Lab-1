@@ -7,7 +7,7 @@ This console app convert markdown to html. Can be called in console and take par
 To **prepare the project to launching** you need to have installed **Node.js**. 
 For the first: clone repository to your PC:
 ```bash
-git clone https://github.com/Dmutre/MTRPZ-Lab-1.git .
+git clone https://github.com/Dmutre/MTRPZ-Lab-1.git
 ```
 You don`t need to install packages, **they are for developing**.
 
