@@ -1,4 +1,4 @@
 module.exports = ERROR_MESSAGE = {
-  NESTED: 'Uncorrect markup: Nested markup',
-  UNPAIRED: 'Uncorrect markup: Unpaired markup',
+  NESTED: 'Error: Invalid markdown: Nested markup',
+  UNPAIRED: 'Error: Invalid markdown: Unpaired markup',
 }

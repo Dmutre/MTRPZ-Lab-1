@@ -1,7 +1,6 @@
 const fs = require('fs');
 const path = require('path');
 const MarkDown = require('./parser/markdown');
-const cases = require('./utils/cases');
 
 const args = process.argv.slice(2);
 const inputFilePath = args[0];
@@ -11,7 +10,7 @@ function tryCatchFunction(handle) {
   try {
     handle();
   } catch(error) {
-    console.log(error.message);
+    console.error(error.message);
     process.exit(0);
   }
 }
@@ -32,7 +31,8 @@ function main() {
   const dataFromInputFile = readInputFile();
   const markDown = new MarkDown();
   const result = markDown.parse(dataFromInputFile);
-  console.log(result);
+  if(outputFilePath) outPutResult(result);
+  else console.log(result);
 }
 
 tryCatchFunction(main);
