@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
-const markdown = require('./markdown');
+const MarkDown = require('./parser/markdown');
+const cases = require('./utils/cases');
 
 const args = process.argv.slice(2);
 const inputFilePath = args[0];
@@ -15,10 +16,8 @@ function tryCatchFunction(handle) {
   }
 }
 
-function main() {
-  const dataFromInputFile = readInputFile();
-  const result = markdown(dataFromInputFile);
-  console.log(result);
+function outPutResult(data) {
+  fs.writeFileSync(getPathFromDir(outputFilePath), data, {encoding: 'utf8'})
 }
 
 function readInputFile() {
@@ -27,6 +26,13 @@ function readInputFile() {
 
 function getPathFromDir(filePath) {
   return path.join(__dirname, filePath);
+}
+
+function main() {
+  const dataFromInputFile = readInputFile();
+  const markDown = new MarkDown();
+  const result = markDown.parse(dataFromInputFile);
+  if(outputFilePath) outPutResult(result)
 }
 
 tryCatchFunction(main);
